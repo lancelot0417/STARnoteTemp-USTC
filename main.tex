@@ -1,0 +1,33 @@
+\documentclass[11pt,a4paper]{starnote}
+
+\input{starsetup}
+
+\title{Analysis note title}
+\author[,a]{Author A \thanks{\href{mailto:authorA@example.edu}{authorA@example.edu}}}
+\author[,b]{Author B}
+\affil[a]{\it Institute A}
+\affil[b]{\it Institute B}
+
+\starnoteversion{1.0}
+\starnoteid{xxxx}
+\starPWG{Physics Working Group: Working Group Name}
+
+\abstracttext{
+Write a concise summary of the measurement, dataset, method, and main result.
+}
+
+\begin{document}
+\setlength{\baselineskip}{0.7cm}
+\tableofcontents
+
+\mainmatter
+\include{chapters/01_introduction}
+\include{chapters/02_floats_and_math}
+\include{chapters/02_analysis_details}
+\include{chapters/03_results}
+\include{chapters/04_summary}
+
+\backmatter
+\bibliography{bib/references}
+
+\end{document}

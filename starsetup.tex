@@ -1,0 +1,91 @@
+% !TeX root = ./main.tex
+
+% Project-local STAR helpers.
+\usepackage{starrefblk}
+
+% Core packages shared with ustcthesis-style chapter content.
+\usepackage{amsmath}
+\usepackage{amssymb}
+\let\openbox\relax
+\usepackage{amsthm}
+\usepackage{authblk}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{dcolumn}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{overpic}
+\usepackage{rotating}
+\usepackage{subcaption}
+\usepackage{bicaption}
+\usepackage{threeparttable}
+\usepackage{longtable}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{siunitx}
+\usepackage[sort]{natbib}
+
+\bibliographystyle{unsrt}
+\graphicspath{{figures/}}
+
+\uchyph=0
+\lefthyphenmin=2
+\righthyphenmin=2
+
+\renewcommand\figurename{\rm Fig.}
+\renewcommand\tablename{\rm Tab.}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\theequation}{\arabic{equation}}
+
+% Compatibility layer for sharing files with ustcthesis chapters.
+\usepackage{xparse}
+\makeatletter
+\@ifundefined{chapter}{%
+  \let\starnote@section\section
+  \let\starnote@subsection\subsection
+  \let\starnote@subsubsection\subsubsection
+  \NewDocumentCommand{\chapter}{s o m}{%
+    \clearpage
+    \IfBooleanTF{#1}{%
+      \starnote@section*{#3}%
+      \addcontentsline{toc}{section}{#3}%
+    }{%
+      \IfNoValueTF{#2}{\starnote@section{#3}}{\starnote@section[#2]{#3}}%
+    }%
+  }%
+  \RenewDocumentCommand{\section}{s o m}{%
+    \IfBooleanTF{#1}{%
+      \starnote@subsection*{#3}%
+    }{%
+      \IfNoValueTF{#2}{\starnote@subsection{#3}}{\starnote@subsection[#2]{#3}}%
+    }%
+  }%
+  \RenewDocumentCommand{\subsection}{s o m}{%
+    \IfBooleanTF{#1}{%
+      \starnote@subsubsection*{#3}%
+    }{%
+      \IfNoValueTF{#2}{\starnote@subsubsection{#3}}{\starnote@subsubsection[#2]{#3}}%
+    }%
+  }%
+}{}
+\@ifundefined{frontmatter}{\newcommand{\frontmatter}{}}{}
+\@ifundefined{mainmatter}{\newcommand{\mainmatter}{\clearpage}}{}
+\@ifundefined{backmatter}{\newcommand{\backmatter}{\clearpage}}{}
+\@ifundefined{symup}{\newcommand{\symup}[1]{\mathrm{#1}}}{}
+\makeatother
+
+\providecommand{\figurenote}[1]{%
+  \par\smallskip
+  {\footnotesize\emph{Note:} #1\par}%
+}
+\providecommand{\cs}[1]{\texttt{\char`\\#1}}
+\providecommand{\env}[1]{\texttt{#1}}
+\providecommand{\pkg}[1]{\textsf{#1}}
+\providecommand{\file}[1]{\nolinkurl{#1}}
+
+% Put project-specific shorthand commands in usercommands.tex.
+% Copy the same file to a thesis project and input it from ustcsetup.tex to keep
+% chapter files portable.
+\InputIfFileExists{usercommands.tex}{}{}
