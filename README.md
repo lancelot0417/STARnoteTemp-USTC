@@ -39,6 +39,38 @@ For best portability between this template and `ustcthesis`, keep physics conten
 inside `chapters/`, keep template-specific title/cover metadata in `main.tex`,
 and avoid putting document-class-specific commands inside chapter files.
 
+## Heading Levels
+
+The shared chapter files are written in thesis-style heading levels:
+
+```tex
+\chapter{Main Topic}
+\section{Subtopic}
+\subsection{Detail}
+```
+
+For compatibility with thesis templates such as `ustcthesis`, the STAR note
+template automatically maps these headings to STAR-note levels:
+
+```text
+\chapter    -> \section
+\section    -> \subsection
+\subsection -> \subsubsection
+```
+
+For portable `chapters/*.tex` files, use at most `\chapter`, `\section`, and
+`\subsection`. Deeper headings such as `\subsubsection` should be converted to
+paragraph-style headings before sharing the same chapter files with the STAR note
+template.
+
+中文说明：为了让同一份 `chapters/*.tex` 同时兼容 thesis 模板和 STAR note
+模板，正文文件中推荐使用 thesis 的层级写法，即 `\chapter`、`\section` 和
+`\subsection`。在 `ustcthesis` 中它们仍然是真正的 chapter/section/subsection；
+在 STAR note 模板中会自动降一级，变成 section/subsection/subsubsection。
+因此，共享章节文件中最好不要继续使用 `\subsubsection`。如果 thesis 里确实
+需要更细的标题，建议改成正文段落式标题，例如 `\paragraph{...}`，避免复制到
+STAR note 后层级混乱。
+
 ## Custom Commands
 
 Put your own shorthand commands in `usercommands.tex`. Do not put project-local
