@@ -39,6 +39,22 @@
 \renewcommand{\thetable}{\arabic{table}}
 \renewcommand{\theequation}{\arabic{equation}}
 
+% Review line-number switch. Leave disabled for normal drafts; uncomment
+% \reviewlinenumbers in main.tex to number only the main text, not the title
+% page or table of contents.
+\makeatletter
+\newif\ifstarnote@reviewlinenumbers
+\starnote@reviewlinenumbersfalse
+\newcommand{\reviewlinenumbers}{\starnote@reviewlinenumberstrue}
+\newcommand{\starnote@startreviewlinenumbers}{%
+  \ifstarnote@reviewlinenumbers
+    \linenumbers
+    \resetlinenumber[1]%
+  \fi
+}
+\AtBeginDocument{\nolinenumbers}
+\makeatother
+
 % Compatibility layer for sharing files with ustcthesis chapters.
 \usepackage{xparse}
 \makeatletter
@@ -71,8 +87,8 @@
   }%
 }{}
 \@ifundefined{frontmatter}{\newcommand{\frontmatter}{}}{}
-\@ifundefined{mainmatter}{\newcommand{\mainmatter}{\clearpage}}{}
-\@ifundefined{backmatter}{\newcommand{\backmatter}{\clearpage}}{}
+\@ifundefined{mainmatter}{\newcommand{\mainmatter}{\clearpage\starnote@startreviewlinenumbers}}{}
+\@ifundefined{backmatter}{\newcommand{\backmatter}{\clearpage\nolinenumbers}}{}
 \@ifundefined{symup}{\newcommand{\symup}[1]{\mathrm{#1}}}{}
 \makeatother
 

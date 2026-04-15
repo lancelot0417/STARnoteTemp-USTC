@@ -39,6 +39,21 @@ For best portability between this template and `ustcthesis`, keep physics conten
 inside `chapters/`, keep template-specific title/cover metadata in `main.tex`,
 and avoid putting document-class-specific commands inside chapter files.
 
+## Review Line Numbers
+
+For review drafts, uncomment this line in `main.tex`:
+
+```tex
+\reviewlinenumbers
+```
+
+Line numbers are applied only after `\mainmatter`, so the title page and table of
+contents remain unnumbered. They are turned off again at `\backmatter`.
+
+中文说明：如果需要给审稿或内部 review 版本加行号，只需要在 `main.tex` 中取消
+`\reviewlinenumbers` 的注释。行号只会从正文部分开始，也就是 `\mainmatter`
+之后；封面和目录不会有行号，进入 `\backmatter` 后行号会关闭。
+
 ## Heading Levels
 
 The shared chapter files are written in thesis-style heading levels:

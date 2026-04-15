@@ -9,8 +9,11 @@
 \affil[b]{\it Institute B}
 
 \starnoteversion{1.0}
-\starnoteid{xxxx}
+\starnoteid{xxxx}% Usually not needed for the final submission; comment out to hide the note ID.
 \starPWG{Physics Working Group: Working Group Name}
+% Uncomment for review drafts. Line numbers start from the main text only;
+% the title page and table of contents remain unnumbered.
+% \reviewlinenumbers
 
 \abstracttext{
 Write a concise summary of the measurement, dataset, method, and main result.
@@ -28,6 +31,6 @@ Write a concise summary of the measurement, dataset, method, and main result.
 \include{chapters/04_summary}
 
 \backmatter
-\bibliography{bib/references}
+\bibliography{bib/references} % 参考文献使用 BibTeX 编译
 
 \end{document}
